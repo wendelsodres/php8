@@ -76,9 +76,23 @@
 
         <pre>
             <code> 
-                echo pi();  
+                echo pi();
 
-                echo min(23,44,88);          
+                echo min(23,44,88);
+
+                echo max(23,44,88);
+
+                echo abs(-1234);
+
+                echo sqrt(144);
+
+                echo round(1.850);
+
+                echo rand();
+
+                echo ceil(12.3434);
+
+                echo floor(12.3434);       
             </code>       
         </pre>
 
@@ -96,6 +110,10 @@
             echo '<p>'.round(1.850).'</p>';
 
             echo '<p>'.rand().'</p>';
+
+            echo '<p>'.ceil(12.3434).'</p>';
+
+            echo '<p>'.floor(12.3434).'</p>';
            
         ?>
     </div>   
