@@ -180,7 +180,13 @@
             <?php                 
                 $a = '10';
                 $a = (int)$a;
-                var_dump($a);            
+                var_dump($a);    
+                
+                $pass = password_hash('123456', PASSWORD_DEFAULT);
+
+                echo $pass;
+
+                echo '<p>'.password_verify('1234567', $pass).'</p>';      
 
             ?>  
         </div>       
