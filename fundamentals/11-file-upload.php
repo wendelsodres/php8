@@ -6,7 +6,7 @@
         $mime = finfo_file($finfo, $_FILES['my_file']['tmp_name']);
         $size = ceil($_FILES['my_file']['size']/1024);
 
-        echo $size;
+        echo $file_name;
 
         $file_size = getimagesize($path_tmp); //width an height image only 
 
@@ -20,6 +20,25 @@
         if(in_array($mime, $allow_files)){
             if($size <= 10000){
                 move_uploaded_file($path_tmp, '../uploads/'.$file_name);
+
+                $isAlpha = false;
+                if ($mime == 'image/jpeg')
+                    $image = imagecreatefromjpeg('../uploads/'.$file_name);
+                elseif ($isAlpha = $mime == 'image/gif') {
+                    $image = imagecreatefromgif('../uploads/'.$file_name);
+                } elseif ($isAlpha = $mime == 'image/png') {
+                    $image = imagecreatefrompng('../uploads/'.$file_name);
+                } else {
+                    return $file_name;
+                }
+                if ($isAlpha) {
+                    imagepalettetotruecolor($image);
+                    imagealphablending($image, true);
+                    imagesavealpha($image, true);
+                }
+                imagewebp($image, '../uploads/'.$file_name_only.'.webp', 90);
+                unlink('../uploads/'.$file_name);
+
             } else {
                 echo 'File size must be within';
             }
