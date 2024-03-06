@@ -69,8 +69,8 @@ require '../vendor/autoload.php';
                 $mail->isSMTP();
                 $mail->Host = 'smtp.mailtrap.io';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'ba7d5060990b2c';
-                $mail->Password = '1da275b379a5d9';
+                $mail->Username = 'USERMAILTRAP';
+                $mail->Password = 'PASSMAILTRAP';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 2525;
 
