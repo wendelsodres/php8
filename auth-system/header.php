@@ -1,5 +1,7 @@
 <?php 
    ob_start();      
+   session_start();
+
    define('BASE_URL','http://php8.test/auth-system/');
    require_once('./config.php');
 ?>
@@ -21,10 +23,21 @@
 
          <div class="nav">
             <ul>
-               <li><a href="index.php">Home</a></li>
-               <li><a href="registration.php">Registration</a></li>
-               <li><a href="login.php">Login</a></li>
-               <li><a href="dashboard.php">Dashboard</a></li>
-               <li><a href="logout.php">Logout</a></li>
+               <li><a href="<?php echo BASE_URL;?>index.php">Home</a></li>
+
+               <?php 
+                  if(!isset($_SESSION['user'])) :
+               ?>
+               <li><a href="<?php echo BASE_URL;?>registration.php">Registration</a></li>
+               <li><a href="<?php echo BASE_URL;?>login.php">Login</a></li>
+               <?php endif; ?>
+
+               <li><a href="<?php echo BASE_URL;?>dashboard.php">Dashboard</a></li>
+
+               <?php 
+                  if(isset($_SESSION['user'])) :
+               ?>
+                  <li><a href="<?php echo BASE_URL;?>logout.php">Logout</a></li>
+               <?php endif; ?>
             </ul>
          </div>

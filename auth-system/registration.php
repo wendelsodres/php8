@@ -1,10 +1,12 @@
 <?php
 
-    include_once('./header.php'); 
+include_once('./header.php'); 
 
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\SMTP;
-    use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require '../vendor/autoload.php';
 ?>
 
 <?php 
@@ -24,7 +26,7 @@
                 throw new Exception('Email can not be empty');
             }
             
-            $statement = $conn->prepare("SELECT firstname, email FROM users WHERE email=?");
+            $statement = $conn->prepare("SELECT email FROM users WHERE email=?");
             $statement->execute([$_POST['email']]);
             $total = $statement->rowCount();
 
@@ -32,7 +34,7 @@
                 throw new Exception('Email already exists');
             }
 
-            if(!filter_var($_POST['firstname'],FILTER_VALIDATE_EMAIL) == '') {
+            if(!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL) == '') {
                 throw new Exception('Email is invalid');
             }
 
@@ -60,7 +62,6 @@
             $email_message .= 'Click Here';
             $email_message .= '</a>';
 
-            require '../vendor/autoload.php';
 
             $mail = new PHPMailer(true);
 
@@ -68,8 +69,8 @@
                 $mail->isSMTP();
                 $mail->Host = 'smtp.mailtrap.io';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'USERMAILTRAP';
-                $mail->Password = 'PASSMAILTRAP;
+                $mail->Username = 'ba7d5060990b2c';
+                $mail->Password = '1da275b379a5d9';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 2525;
 

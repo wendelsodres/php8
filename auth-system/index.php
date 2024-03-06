@@ -16,27 +16,26 @@
             <th>Email</th>
             <th>Phone</th>
         </tr>
+
+        <?php 
+            $i=0;
+            $statement = $conn->prepare("SELECT id, firstname,lastname,email,phone FROM users");
+            $statement->execute();
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach($result as $row) :  
+                $i++      
+        ?>
         <tr>
-            <td>1</td>
-            <td>Smith</td>
-            <td>Johnson</td>
-            <td>smith@gmail.com</td>
-            <td>111111</td>
+            <td><?php echo $i;?></td>
+            <td><?php echo $row['firstname'];?></td>
+            <td><?php echo $row['lastname'];?></td>
+            <td><?php echo $row['email'];?></td>
+            <td><?php echo $row['phone'];?></td>
         </tr>
-        <tr>
-            <td>2</td>
-            <td>Ray</td>
-            <td>Manner</td>
-            <td>ray@gmail.com</td>
-            <td>222222</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Jessica</td>
-            <td>Robert</td>
-            <td>jessica@gmail.com</td>
-            <td>3333333</td>
-        </tr>
+
+        <?php endforeach; ?>
+       
     </table>
 </div>
 
